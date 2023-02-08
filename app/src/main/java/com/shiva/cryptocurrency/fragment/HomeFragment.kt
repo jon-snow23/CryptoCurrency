@@ -5,24 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.shiva.cryptocurrency.R
+import com.shiva.cryptocurrency.apis.ApiInterface
+import com.shiva.cryptocurrency.apis.ApiUtilities
+import com.shiva.cryptocurrency.databinding.FragmentHomeBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    private lateinit var binding : FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        getTopCurrencyList()
+
+        return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = HomeFragment()
+    private fun getTopCurrencyList() {
+        lifecycleScope.launch(Dispatchers.IO) {
+        }
     }
+
 }
